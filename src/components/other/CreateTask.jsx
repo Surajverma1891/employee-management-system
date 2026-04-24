@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { AuthContext } from '../../context/AuthProvider'
+import { getTaskCounts } from '../../utils/localStorage'
 
 const CreateTask = () => {
 
@@ -16,6 +17,9 @@ const CreateTask = () => {
 
     if (!taskTitle || !taskDescription || !taskDate || !assignTo || !category) return
 
+    const normalizedAssignTo = assignTo.trim().toLowerCase()
+    let hasMatchedEmployee = false
+
     const newTask = {
       taskTitle,
       taskDescription,
@@ -28,18 +32,23 @@ const CreateTask = () => {
     }
 
     const updatedData = userData.map((elem) => {
-      if (elem.firstName === assignTo) {
+      if (elem.firstName.trim().toLowerCase() === normalizedAssignTo) {
+        hasMatchedEmployee = true
+        const updatedTasks = [...elem.tasks, newTask]
+
         return {
           ...elem,
-          tasks: [...elem.tasks, newTask],
-          taskCounts: {
-            ...elem.taskCounts,
-            newTask: elem.taskCounts.newTask + 1
-          }
+          tasks: updatedTasks,
+          taskCounts: getTaskCounts(updatedTasks)
         }
       }
       return elem
     })
+
+    if (!hasMatchedEmployee) {
+      alert('Employee name not found')
+      return
+    }
 
     setUserData(updatedData)
 

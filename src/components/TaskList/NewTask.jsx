@@ -1,35 +1,28 @@
-import React from 'react'
-
-const NewTask = ({ data }) => {
+const NewTask = ({ data, onAccept }) => {
   return (
-    <div className="flex-shrink-0 w-[300px] p-5 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-xl text-white">
-
-      {/* Top */}
-      <div className="flex justify-between items-center">
-        <span className="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30">
+    <article className="flex h-full flex-col rounded-[24px] border border-sky-400/20 bg-sky-500/10 p-5 text-white shadow-lg">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <span className="rounded-full border border-sky-400/30 bg-sky-400/15 px-3 py-1 text-xs font-medium text-sky-100">
           {data.category}
         </span>
-        <span className="text-xs text-gray-300">{data.taskDate}</span>
+        <span className="text-xs text-slate-300">{data.taskDate}</span>
       </div>
 
-      {/* Title */}
-      <h2 className="mt-5 text-xl font-semibold">
+      <h3 className="mt-4 text-xl font-semibold text-white">
         {data.taskTitle}
-      </h2>
+      </h3>
 
-      {/* Description */}
-      <p className="text-sm mt-2 text-gray-300 line-clamp-3">
+      <p className="mt-3 flex-1 text-sm leading-6 text-slate-200">
         {data.taskDescription}
       </p>
 
-      {/* Button */}
-      <div className="mt-6">
-        <button className="w-full bg-blue-500 hover:bg-blue-600 transition rounded-lg py-2 text-xs font-medium">
-          Accept Task
-        </button>
-      </div>
-
-    </div>
+      <button
+        onClick={onAccept}
+        className="mt-5 rounded-xl bg-sky-500 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-sky-600"
+      >
+        Accept Task
+      </button>
+    </article>
   )
 }
 
