@@ -3,31 +3,57 @@ import { AuthContext } from '../../context/AuthProvider'
 
 const AllTask = () => {
 
-   const [userData,setUserData] =  useContext(AuthContext)
+  const [userData] = useContext(AuthContext)
 
-   
   return (
-    <div className='bg-[#1c1c1c] p-5 rounded mt-5'>
-        <div className='bg-red-400 mb-2 py-2 px-4 flex justify-between rounded'>
-            <h2 className='text-lg font-medium w-1/5'>Employee Name</h2>
-            <h3 className='text-lg font-medium w-1/5'>New Task</h3>
-            <h5 className='text-lg font-medium w-1/5'>Active Task</h5>
-            <h5 className='text-lg font-medium w-1/5'>Completed</h5>
-            <h5 className='text-lg font-medium w-1/5'>Failed</h5>
-        </div>
-        <div className=''>
-        {userData.map(function(elem,idx){
-            return <div key={idx} className='border-2 border-emerald-500 mb-2 py-2 px-4 flex justify-between rounded'>
-            <h2 className='text-lg font-medium  w-1/5'>{elem.firstName}</h2>
-            <h3 className='text-lg font-medium w-1/5 text-blue-400'>{elem.taskCounts.newTask}</h3>
-            <h5 className='text-lg font-medium w-1/5 text-yellow-400'>{elem.taskCounts.active}</h5>
-            <h5 className='text-lg font-medium w-1/5 text-white'>{elem.taskCounts.completed}</h5>
-            <h5 className='text-lg font-medium w-1/5 text-red-600'>{elem.taskCounts.failed}</h5>
-        </div>
-        })}
-        </div>
-        
-        
+    <div className="bg-white/10 backdrop-blur-xl border border-white/20 p-5 rounded-3xl shadow-xl mt-5 text-white">
+
+      {/* Header Row */}
+      <div className="bg-white/10 border border-white/10 mb-3 py-3 px-4 flex justify-between rounded-2xl text-sm md:text-base font-semibold text-gray-300">
+        <h2 className="w-1/5">Employee</h2>
+        <h3 className="w-1/5">New</h3>
+        <h5 className="w-1/5">Active</h5>
+        <h5 className="w-1/5">Completed</h5>
+        <h5 className="w-1/5">Failed</h5>
+      </div>
+
+      {/* Data */}
+      <div className="space-y-2">
+
+        {userData?.length > 0 ? (
+          userData.map((elem, idx) => (
+            <div
+              key={idx}
+              className="bg-white/5 border border-white/10 py-3 px-4 flex justify-between rounded-2xl hover:bg-white/10 transition"
+            >
+              <h2 className="w-1/5 font-medium">
+                {elem.firstName}
+              </h2>
+
+              <h3 className="w-1/5 text-blue-400 font-semibold">
+                {elem.taskCounts.newTask}
+              </h3>
+
+              <h5 className="w-1/5 text-yellow-400 font-semibold">
+                {elem.taskCounts.active}
+              </h5>
+
+              <h5 className="w-1/5 text-emerald-400 font-semibold">
+                {elem.taskCounts.completed}
+              </h5>
+
+              <h5 className="w-1/5 text-red-400 font-semibold">
+                {elem.taskCounts.failed}
+              </h5>
+            </div>
+          ))
+        ) : (
+          <p className="text-gray-400 text-center py-6">
+            No employee data available
+          </p>
+        )}
+
+      </div>
     </div>
   )
 }

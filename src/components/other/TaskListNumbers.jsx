@@ -1,25 +1,49 @@
 import React from 'react'
 
-const TaskListNumbers = ({data}) => {
+const TaskListNumbers = ({ data }) => {
   return (
-    <div className='flex mt-10 justify-between gap-5 screen'>
-        
-        <div className='rounded-xl w-[45%] py-6 px-9 bg-blue-400'>
-            <h2 className='text-3xl font-bold'>{data.taskCounts.newTask}</h2>
-            <h3 className='text-xl mt-0.5 font-medium'>New Task</h3>
-        </div>
-        <div className='rounded-xl w-[45%] py-6 px-9 bg-green-400'>
-            <h2 className='text-3xl font-bold'>{data.taskCounts.completed}</h2>
-            <h3 className='text-xl mt-0.5 font-medium'>Completed Task</h3>
-        </div>
-        <div className='rounded-xl w-[45%] py-6 px-9 bg-yellow-400 '>
-            <h2 className='text-3xl text-black font-bold'>{data.taskCounts.active}</h2>
-            <h3 className='text-xl mt-0.5 text-black font-medium'>Accepted Task</h3>
-        </div>
-        <div className='rounded-xl w-[45%] py-6 px-9 bg-red-400'>
-            <h2 className='text-3xl font-bold'>{data.taskCounts.failed}</h2>
-            <h3 className='text-xl mt-0.5 font-medium'>Failed Task</h3>
-        </div>
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mt-10">
+
+      {/* New Task */}
+      <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 shadow-xl">
+        <h2 className="text-3xl font-bold text-blue-400">
+          {data?.taskCounts?.newTask}
+        </h2>
+        <h3 className="text-gray-300 mt-1 font-medium">
+          New Task
+        </h3>
+      </div>
+
+      {/* Completed */}
+      <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 shadow-xl">
+        <h2 className="text-3xl font-bold text-emerald-400">
+          {data?.taskCounts?.completed}
+        </h2>
+        <h3 className="text-gray-300 mt-1 font-medium">
+          Completed
+        </h3>
+      </div>
+
+      {/* Active */}
+      <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 shadow-xl">
+        <h2 className="text-3xl font-bold text-yellow-400">
+          {data?.taskCounts?.active}
+        </h2>
+        <h3 className="text-gray-300 mt-1 font-medium">
+          Accepted
+        </h3>
+      </div>
+
+      {/* Failed */}
+      <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 shadow-xl">
+        <h2 className="text-3xl font-bold text-red-400">
+          {data?.taskCounts?.failed}
+        </h2>
+        <h3 className="text-gray-300 mt-1 font-medium">
+          Failed
+        </h3>
+      </div>
+
     </div>
   )
 }
